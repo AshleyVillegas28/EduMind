@@ -1,0 +1,20 @@
+<header class="header">
+  <div class="logo">
+    <a class="logo-link"
+       [routerLink]="isLoggedIn ? '/pagina-principal' : null"
+       [class.logo-link--active]="isLoggedIn">
+      <h1><span class="logo-edu">Edu</span><span class="logo-mind">Mind</span></h1>
+    </a>
+  </div>
+  <nav class="nav-buttons">
+    <button class="btn-secondary" (click)="onAcercaDe()">Acerca de</button>
+    <ng-container *ngIf="isLoggedIn; else loginButton">
+      <button class="btn-secondary" routerLink="/tabla-crud">Tabla</button>
+      <span class="user-welcome">Bienvenido, {{ userName }}</span>
+      <button class="btn-primary" (click)="logout()">Cerrar Sesión</button>
+    </ng-container>
+    <ng-template #loginButton>
+      <button class="btn-primary" (click)="openLogin()">Iniciar Sesión</button>
+    </ng-template>
+  </nav>
+</header>

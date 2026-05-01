@@ -1,0 +1,224 @@
+/* Main Content Wrapper */
+.main-content {
+  max-width: 130rem;
+  margin: 3rem auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #036b85 0%, #00a8cc 100%);
+  border-radius: 1.6rem;
+  padding: 4rem;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1rem 1.5rem -0.3rem rgba(0, 0, 0, 0.1);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 60rem;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-title span {
+  color: #8cc63f;
+}
+
+.hero-edu {
+  color: #ffffff;
+}
+
+.hero-mind {
+  color: #8cc63f;
+}
+
+
+.hero-subtitle {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #ccfbf1;
+  margin-bottom: 2.5rem;
+}
+
+.hero-divider {
+  border: none;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 6rem;
+  margin-bottom: 2rem;
+}
+
+.hero-text {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #f1f5f9;
+}
+
+/* Section Shared */
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: 0.1rem;
+  margin-bottom: 2rem;
+}
+
+/* Card Shared */
+.card {
+  background-color: #ffffff;
+  border-radius: 1.2rem;
+  border: 1px solid #e2e8f0;
+  padding: 2.5rem;
+  box-shadow: 0 0.4rem 0.6rem -0.1rem rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-0.2rem);
+  box-shadow: 0 1rem 1.5rem -0.3rem rgba(0, 0, 0, 0.1);
+}
+
+/* Modules Section */
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Wide row for the last/solo module */
+.modules-grid-wide {
+  display: flex;
+  justify-content: center;
+}
+
+.module-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-left: 0.4rem solid transparent;
+  padding-left: 2.1rem;
+}
+
+/* Per-module left border colors matching their badges */
+.border-blue   { border-left-color: #2563eb; }
+.border-teal   { border-left-color: #0d9488; }
+.border-orange { border-left-color: #d97706; }
+.border-red    { border-left-color: #dc2626; }
+.border-purple { border-left-color: #7e22ce; }
+
+/* Last module: centered and slightly wider than a single column */
+.module-card-wide {
+  width: clamp(30rem, 55%, 70rem);
+}
+
+.module-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.icon-blue {
+  background-color: #eff6ff;
+}
+.icon-teal {
+  background-color: #f0fdfa;
+}
+.icon-orange {
+  background-color: #fff7ed;
+}
+.icon-red {
+  background-color: #fef2f2;
+}
+.icon-purple {
+  background-color: #faf5ff;
+}
+
+.module-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.module-desc {
+  font-size: 1.5rem;
+  color: #64748b;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.badge {
+  padding: 0.6rem 1.4rem;
+  border-radius: 2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.badge-blue {
+  background-color: #2563eb;
+}
+.badge-teal {
+  background-color: #0d9488;
+}
+.badge-orange {
+  background-color: #d97706;
+}
+.badge-red {
+  background-color: #dc2626;
+}
+.badge-purple {
+  background-color: #7e22ce;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .modules-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .modules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .module-card-wide {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  html {
+    font-size: 56.25%;
+  }
+
+  .hero {
+    padding: 3rem 2rem;
+  }
+
+  .modules-grid {
+    grid-template-columns: 1fr;
+  }
+}

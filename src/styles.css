@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* 1rem = 10px */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f0f4f8;
+  color: #334155;
+  font-size: 1.4rem; /* 14px */
+  line-height: 1.5;
+}

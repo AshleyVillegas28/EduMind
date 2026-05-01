@@ -1,0 +1,261 @@
+/* ── Contenedor principal de la página ─────────────────────── */
+.tabla-section {
+  max-width: 130rem;
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+
+/* ── Encabezado de la página ───────────────────────────────── */
+.tabla-header {
+  margin-bottom: 2.5rem;
+}
+
+.tabla-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: 0.05rem;
+}
+
+/* ── Barra de filtro ───────────────────────────────────────── */
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1.4rem 2rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.04);
+}
+
+.input-container label {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.input-container input {
+  flex: 1;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.7rem;
+  padding: 0.9rem 1.4rem;
+  font-size: 1.5rem;
+  color: #1e293b;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+.input-container input:focus {
+  outline: none;
+  border-color: #0d9488;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+}
+
+.btn-buscar {
+  background: linear-gradient(135deg, #036b85 0%, #00a8cc 100%);
+  color: white;
+  border: none;
+  padding: 0.9rem 2.2rem;
+  border-radius: 0.7rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(3, 107, 133, 0.3);
+}
+
+.btn-buscar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(3, 107, 133, 0.45);
+}
+
+.btn-reiniciar {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  padding: 0.9rem 1.8rem;
+  border-radius: 0.7rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-reiniciar:hover {
+  background-color: #e2e8f0;
+  color: #1e293b;
+  border-color: #94a3b8;
+}
+
+/* ── Contenedor de la tabla ─────────────────────────────────── */
+.tabla-container {
+  background: #ffffff;
+  border-radius: 1.2rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 0.4rem 0.6rem -0.1rem rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+/* ── Tabla Angular Material override ──────────────────────── */
+.mat-elevation-z4 {
+  width: 100%;
+  border-radius: 0;
+  box-shadow: none !important;
+}
+
+/* Cabeceras */
+.celda-cabeza {
+  background: linear-gradient(135deg, #036b85 0%, #00a8cc 100%) !important;
+  color: #ffffff !important;
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  padding: 1.4rem 1.8rem !important;
+  white-space: nowrap;
+}
+
+/* Celdas de datos */
+.celda-contenido {
+  font-size: 1.45rem !important;
+  color: #475569 !important;
+  padding: 1.2rem 1.8rem !important;
+  vertical-align: middle;
+}
+
+/* Columna de número */
+.celda-num {
+  font-weight: 700 !important;
+  color: #036b85 !important;
+  text-align: center;
+  width: 7rem;
+}
+
+/* Columna de nombre - ligeramente destacada */
+.celda-nombre {
+  font-weight: 600 !important;
+  color: #1e293b !important;
+}
+
+/* Columnas de objetivos: texto más pequeño y limitado */
+.celda-objetivo {
+  font-size: 1.35rem !important;
+  max-width: 28rem;
+  line-height: 1.5;
+}
+
+/* Filas con hover */
+.mat-mdc-row:hover {
+  background-color: #f0f9ff !important;
+  transition: background-color 0.2s;
+}
+
+/* Mensaje de sin resultados */
+.empty-msg {
+  text-align: center !important;
+  color: #94a3b8 !important;
+  font-size: 1.6rem !important;
+  padding: 3rem !important;
+}
+
+/* ── Botones de acción ─────────────────────────────────────── */
+
+/* La celda de acciones: padding ajustado, sin overflow */
+.celda-acciones {
+  padding: 1rem 1.4rem !important;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Cabecera de la columna acciones: alineada igual que la celda */
+.celda-cabeza-acciones {
+  white-space: nowrap;
+  min-width: 16rem;
+}
+
+/* Wrapper interno que controla el layout de los botones */
+.acciones-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.btn-accion {
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.55rem 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.btn-editar {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.btn-editar:hover {
+  background-color: #dbeafe;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.2);
+}
+
+.btn-eliminar {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.btn-eliminar:hover {
+  background-color: #fee2e2;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(220, 38, 38, 0.2);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* El filtro se apila verticalmente */
+  .input-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-buscar {
+    width: 100%;
+  }
+
+  /* La tabla permite scroll horizontal sin desordenar los botones */
+  .tabla-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Los botones de acción se apilan verticalmente en pantallas muy pequeñas */
+  .acciones-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .btn-accion {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Texto de objetivos más pequeño en móvil */
+  .celda-objetivo {
+    max-width: 18rem;
+    font-size: 1.25rem !important;
+  }
+}

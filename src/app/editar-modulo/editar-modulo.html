@@ -1,0 +1,55 @@
+<!-- ── Cabecera del dialog con degradado ─────────────────── -->
+<div class="dialog-header">
+  <h2 mat-dialog-title class="dialog-title">Editar Módulo</h2>
+</div>
+
+<!-- ── Campos del formulario ─────────────────────────────── -->
+<mat-dialog-content class="dialog-content">
+
+  <div class="field-group">
+    <label class="field-label" for="nombre">Nombre del Módulo</label>
+    <input
+      id="nombre"
+      type="text"
+      [(ngModel)]="modulo.Nombre"
+      placeholder="Nombre del módulo"
+    />
+  </div>
+
+  <div class="field-group">
+    <label class="field-label" for="responsable">Responsable</label>
+    <input
+      id="responsable"
+      type="text"
+      [(ngModel)]="modulo.Responsable"
+      placeholder="Nombre del responsable"
+    />
+  </div>
+
+  <div class="field-group">
+    <label class="field-label" for="objetivo1">Objetivo 1</label>
+    <textarea
+      id="objetivo1"
+      [(ngModel)]="modulo.Objetivo1"
+      placeholder="Primer objetivo del módulo"
+      rows="3"
+    ></textarea>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label" for="objetivo2">Objetivo 2</label>
+    <textarea
+      id="objetivo2"
+      [(ngModel)]="modulo.Objetivo2"
+      placeholder="Segundo objetivo del módulo"
+      rows="3"
+    ></textarea>
+  </div>
+
+</mat-dialog-content>
+
+<!-- ── Acciones ───────────────────────────────────────────── -->
+<mat-dialog-actions class="dialog-actions">
+  <button class="btn-cancel" (click)="cancelar()">Cancelar</button>
+  <button class="btn-guardar" (click)="guardar()">Guardar cambios</button>
+</mat-dialog-actions>
