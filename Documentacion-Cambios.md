@@ -48,3 +48,30 @@ Se erradicó por completo el sombrío color violeta por defecto de las herramien
 - **`app.css` & `footer.css`:** Todo lo referente a envoltorios o cabeceras maestras abandonan el morado oscuro adoptando una matriz acuosa sólida o en gradientes profundos (`#036b85`), brindando pulcritud de diseño al borde de la ventana.
 - **`login.css`:** Los focos dinámicos en donde sitúas tu mouse de ahora en adelante destellarán auras y contornos `Celestes` (`#00a8cc` `rgba(0, 168, 204, 0.1)`).
 - **Botones y el isotipo Textual de `header.css`:** Para contrastar con este vasto esquema turquesa, el "Botón Enviar" o el mismísimo texto del Título Web ("EduMind") adquirieron el brillo fluorescente y atrayente del `Verde Limón` puro bajo trazos dinámicos de (`linear-gradient(135deg, #8ce02f 0%, #6BA323 100%)`). Sus sombras pasaron de tonos azules opacos a verdes vibrantes.
+
+### Módulo 5 - Buzón de Consultas Anónimas
+**Responsable:** Domenica Rosales Galarza
+
+**Componente:** `buzon-anonimo`
+
+**Descripción:**  
+Sistema que permite a los estudiantes enviar preguntas de forma completamente 
+anónima y visualizar las respuestas en un Muro de Dudas público.
+
+**Funcionalidades implementadas:**
+- Formulario anónimo con selección de categoría y validación de campos
+- Contador de caracteres en tiempo real (límite 500)
+- Simulación de envío asíncrono con estado de carga
+- Las preguntas enviadas aparecen automáticamente en el Muro de Dudas
+- Muro de Dudas con búsqueda en tiempo real y filtros por categoría
+- Navegación fluida entre vistas (Buzón / Muro) sin cambio de ruta
+
+**Tecnologías/conceptos Angular aplicados:**
+- `*ngIf`, `*ngFor`, `[(ngModel)]`, `[ngClass]`, `[class.activo]`
+- `signal()` para el contador de caracteres
+- Getter computado (`get preguntasFiltradas()`) para filtrado reactivo
+- `BehaviorSubject` no requerido — estado local del componente
+
+**Diseño:**
+- Paleta púrpura (confianza y privacidad) siguiendo la guía visual de EduMind
+- Hover effects, animaciones CSS y diseño responsive (mobile-first)
