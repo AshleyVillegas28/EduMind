@@ -1,0 +1,197 @@
+
+<div class="buzon-wrapper">
+
+  <!--HERO-->
+  <section class="hero">
+    <div class="hero-icono">🔒</div>
+    <h1 class="hero-titulo">Buzón Anónimo</h1>
+    <p class="hero-subtitulo">
+      Tu espacio seguro para preguntar sin miedo. Tu identidad siempre está protegida.
+    </p>
+
+    <!-- Navegación entre vistas -->
+    <div class="vista-tabs">
+      <button
+        class="tab-btn"
+        [class.activo]="vistaActiva === 'buzon'"
+        (click)="cambiarVista('buzon')"
+      >
+        ✉️ Enviar Consulta
+      </button>
+      <button
+        class="tab-btn"
+        [class.activo]="vistaActiva === 'muro'"
+        (click)="cambiarVista('muro')"
+      >
+        📌 Muro de Dudas
+        <span class="badge">{{ preguntasRespondidas.length }}</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- VISTA: BUZÓN -->
+  <section class="seccion-contenido" *ngIf="vistaActiva === 'buzon'">
+
+    <!-- Estado: enviado exitosamente -->
+    <div class="card exito-card" *ngIf="enviado">
+      <div class="exito-icono">✅</div>
+      <h2>¡Mensaje enviado!</h2>
+      <p>
+        Tu consulta fue recibida de forma completamente anónima. Un profesional la revisará
+        pronto y la respuesta aparecerá en el <strong>Muro de Dudas</strong>.
+      </p>
+      <div class="exito-detalle">
+        <span>🔒 Identidad protegida</span>
+        <span>⏱️ Respuesta en 24-48 h</span>
+        <span>📌 Publicada en el muro</span>
+      </div>
+      <button class="btn-accion" (click)="resetFormulario()">Enviar otra consulta</button>
+      <button class="btn-secundario" (click)="cambiarVista('muro')">Ver Muro de Dudas</button>
+    </div>
+
+    <!-- Formulario de envío -->
+    <div class="card formulario-card" *ngIf="!enviado">
+      <div class="garantias">
+        <span class="garantia-item">🔒 100% Anónimo</span>
+        <span class="garantia-item">🛡️ Sin registro</span>
+        <span class="garantia-item">💜 Respuesta profesional</span>
+      </div>
+
+      <form (ngSubmit)="enviarMensaje()" class="formulario">
+
+        <div class="campo-grupo">
+          <label class="campo-label" for="categoria">Categoría de tu consulta</label>
+          <div class="select-wrapper">
+            <select
+              id="categoria"
+              name="categoria"
+              [(ngModel)]="categoriaSeleccionada"
+              class="campo-select"
+            >
+              <option value="" disabled>Selecciona una categoría…</option>
+              <option *ngFor="let cat of categorias" [value]="cat.valor">
+                {{ cat.etiqueta }}
+              </option>
+            </select>
+            <span class="select-arrow">▾</span>
+          </div>
+        </div>
+
+        <div class="campo-grupo">
+          <label class="campo-label" for="mensaje">Tu pregunta o duda</label>
+          <textarea
+            id="mensaje"
+            name="mensaje"
+            [(ngModel)]="mensajeTexto"
+            (ngModelChange)="onTextoChange()"
+            class="campo-textarea"
+            placeholder="Escribe aquí tu consulta de forma libre. No se guardarán datos que te identifiquen…"
+            rows="6"
+          ></textarea>
+          <div class="contador-chars" [class.limite]="contadorChars() > MAX_CHARS * 0.9">
+            {{ contadorChars() }} / {{ MAX_CHARS }}
+          </div>
+        </div>
+
+        <div class="error-msg" *ngIf="errorEnvio">
+          ⚠️ {{ errorEnvio }}
+        </div>
+
+        <button
+          type="submit"
+          class="btn-accion"
+          [disabled]="enviando || !mensajeTexto.trim() || !categoriaSeleccionada"
+        >
+          <span *ngIf="!enviando">Enviar de forma anónima 🔒</span>
+          <span *ngIf="enviando">
+            <span class="spinner"></span> Enviando…
+          </span>
+        </button>
+      </form>
+
+      <p class="nota-privacidad">
+        🔐 <strong>Política de privacidad:</strong> No almacenamos información personal.
+        Tu consulta es procesada de forma completamente anónima por nuestro equipo de orientación.
+      </p>
+    </div>
+  </section>
+
+  <!--VISTA: MURO DE DUDAS -->
+  <section class="seccion-contenido" *ngIf="vistaActiva === 'muro'">
+    <div class="muro-controles">
+
+      <!-- Búsqueda -->
+      <div class="busqueda-wrapper">
+        <span class="busqueda-icono">🔍</span>
+        <input
+          type="text"
+          [(ngModel)]="busqueda"
+          class="busqueda-input"
+          placeholder="Buscar en las dudas respondidas…"
+        />
+      </div>
+
+      <!-- Filtros por categoría -->
+      <div class="filtros">
+        <button
+          class="filtro-btn"
+          [class.activo]="filtroCategoria === 'todas'"
+          (click)="filtroCategoria = 'todas'"
+        >
+          Todas
+        </button>
+        <button
+          *ngFor="let cat of categorias"
+          class="filtro-btn"
+          [class.activo]="filtroCategoria === cat.valor"
+          (click)="filtroCategoria = cat.valor"
+        >
+          {{ cat.etiqueta }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Sin resultados -->
+    <div class="sin-resultados" *ngIf="preguntasFiltradas.length === 0">
+      <span class="sr-icono">🔎</span>
+      <p>No se encontraron preguntas con ese filtro.</p>
+      <button class="btn-secundario" (click)="filtroCategoria = 'todas'; busqueda = ''">
+        Ver todas las dudas
+      </button>
+    </div>
+
+    <!-- Tarjetas de preguntas -->
+    <div class="muro-grid">
+      <article class="pregunta-card" *ngFor="let p of preguntasFiltradas">
+        <div class="pregunta-header">
+          <span class="tag" [ngClass]="getColorCategoria(p.categoria)">
+            {{ getEtiquetaCategoria(p.categoria) }}
+          </span>
+          <span class="fecha-texto">{{ p.fecha }}</span>
+        </div>
+
+        <div class="pregunta-cuerpo">
+          <div class="pregunta-bloque">
+            <span class="icono-rol">🙋</span>
+            <p class="pregunta-texto">{{ p.texto }}</p>
+          </div>
+
+          <div class="respuesta-bloque" *ngIf="p.respuesta">
+            <div class="respuesta-header">
+              <span class="icono-rol">👩‍⚕️</span>
+              <span class="resp-etiqueta">Respuesta del profesional</span>
+              <span class="fecha-texto">{{ p.fechaRespuesta }}</span>
+            </div>
+            <p class="respuesta-texto">{{ p.respuesta }}</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="muro-pie">
+      <p>¿Tu duda no está aquí? <button class="link-btn" (click)="cambiarVista('buzon')">Envíala de forma anónima →</button></p>
+    </div>
+
+  </section>
+
+</div>
