@@ -1,0 +1,20 @@
+<div class="test-container">
+  <div class="test-card">
+    <app-test-inicio 
+      *ngIf="estado === 'inicio'" 
+      (onStart)="comenzarTest($event)">
+    </app-test-inicio>
+
+    <app-test-ejecucion 
+      *ngIf="estado === 'ejecucion'" 
+      [test]="testSeleccionado!" 
+      (onFinish)="mostrarResultados($event)">
+    </app-test-ejecucion>
+
+    <app-test-resultado 
+      *ngIf="estado === 'resultado'" 
+      [resultados]="resultadosFinales" 
+      (onReset)="reiniciar()">
+    </app-test-resultado>
+  </div>
+</div>

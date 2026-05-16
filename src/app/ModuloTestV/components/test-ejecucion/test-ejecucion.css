@@ -1,0 +1,97 @@
+.ejecucion-container {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.progress-container {
+  background: #e2e8f0;
+  height: 1rem;
+  border-radius: 1rem;
+  position: relative;
+  margin-bottom: 4rem;
+}
+.progress-bar {
+  background: #00a8cc;
+  height: 100%;
+  border-radius: 1rem;
+  transition: width 0.3s ease;
+}
+.progress-text {
+  position: absolute;
+  right: 0;
+  top: -2.5rem;
+  font-size: 1.2rem;
+  color: #64748b;
+  font-weight: 600;
+}
+.pregunta-box {
+  flex-grow: 1;
+  text-align: center;
+}
+.categoria-tag {
+  background: #f1f5f9;
+  color: #64748b;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+h2 {
+  font-size: 2.4rem;
+  color: #1e293b;
+  margin: 2.5rem 0 4rem;
+  line-height: 1.4;
+}
+.opciones-grid {
+  display: grid;
+  gap: 1.2rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.opcion-btn {
+  background: white;
+  border: 2px solid #e2e8f0;
+  padding: 1.5rem 2rem;
+  border-radius: 1.2rem;
+  font-size: 1.6rem;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+.opcion-btn:hover {
+  border-color: #00a8cc;
+  background: #f0fdfa;
+}
+.opcion-btn.selected {
+  background: #036b85;
+  border-color: #036b85;
+  color: white;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+}
+.btn-nav {
+  padding: 1.2rem 3rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.3s;
+}
+.btn-nav:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.primary {
+  background: #00a8cc;
+  color: white;
+}
+.secondary {
+  background: #f1f5f9;
+  color: #475569;
+}

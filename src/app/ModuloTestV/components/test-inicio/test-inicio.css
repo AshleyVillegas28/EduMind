@@ -1,0 +1,139 @@
+.inicio-container {
+  padding: 3rem 4rem;
+  text-align: center;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.header h1 {
+  font-size: 2.8rem;
+  color: #036b85;
+  margin: 1rem 0;
+}
+.header p {
+  color: #64748b;
+  font-size: 1.6rem;
+  margin-bottom: 2.5rem;
+}
+.icon {
+  font-size: 4rem;
+}
+.tests-section {
+  margin-bottom: 4rem;
+  text-align: left;
+}
+.section-subtitle {
+  font-size: 2rem;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  border-left: 4px solid #8cc63f;
+}
+.tests-list {
+  display: grid;
+  gap: 1.5rem;
+}
+.test-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+.test-item:hover {
+  border-color: #00a8cc;
+  background-color: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.test-info h3 {
+  font-size: 1.7rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+.test-info p {
+  color: #64748b;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+.meta {
+  display: flex;
+  gap: 0.8rem;
+}
+.badge {
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.badge-questions { background: #e0f2fe; color: #036b85; }
+.badge-cat { background: #f0fdf4; color: #166534; }
+.badge-mini { background: #f1f5f9; color: #475569; }
+
+.btn-start {
+  background: #8cc63f;
+  color: white;
+  border: none;
+  padding: 1.2rem 2.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.test-item:hover .btn-start {
+  background: #7ab336;
+}
+
+/* Grid for Specific Tests */
+.tests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.test-item-mini {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.2rem;
+  cursor: pointer;
+  background: white;
+  transition: all 0.2s;
+}
+.test-item-mini:hover {
+  border-color: #00a8cc;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.test-item-mini h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #334155;
+}
+.btn-start-mini {
+  margin-top: 1rem;
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.test-item-mini:hover .btn-start-mini {
+  background: #00a8cc;
+  color: white;
+}
+
+/* Scrollbar */
+.inicio-container::-webkit-scrollbar {
+  width: 6px;
+}
+.inicio-container::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}

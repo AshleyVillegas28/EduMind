@@ -1,0 +1,39 @@
+<div class="inicio-container">
+  <div class="header">
+    <span class="icon">🚀</span>
+    <h1>Tests Vocacionales</h1>
+    <p>Encuentra tu camino profesional con nuestras evaluaciones diseñadas por expertos.</p>
+  </div>
+
+  <div class="tests-section">
+    <h2 class="section-subtitle">Test General</h2>
+    <div class="tests-list">
+      <div *ngFor="let test of testsGenerales" class="test-item" (click)="seleccionar(test)">
+        <div class="test-info">
+          <h3>{{ test.nombre }}</h3>
+          <p>{{ test.descripcion }}</p>
+          <div class="meta">
+            <span class="badge badge-questions">{{ test.cantidadPreguntas }} preguntas</span>
+            <span class="badge badge-cat">{{ test.categorias.length }} áreas evaluadas</span>
+          </div>
+        </div>
+        <button class="btn-start">Comenzar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tests-section">
+    <h2 class="section-subtitle">Tests Específicos</h2>
+    <div class="tests-grid">
+      <div *ngFor="let test of testsEspecificos" class="test-item-mini" (click)="seleccionar(test)">
+        <div class="test-info">
+          <h3>{{ test.nombre }}</h3>
+          <div class="meta">
+            <span class="badge badge-mini">{{ test.cantidadPreguntas }} preguntas</span>
+          </div>
+        </div>
+        <button class="btn-start-mini">Ir al test</button>
+      </div>
+    </div>
+  </div>
+</div>

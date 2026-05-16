@@ -1,0 +1,60 @@
+<div class="resultado-container">
+  <div class="header">
+    <span class="icon">✨</span>
+    <h1>¡Resultados Listos!</h1>
+    <p>Basado en tus respuestas, estas son las áreas donde más destacarías.</p>
+  </div>
+
+  <div class="main-result" *ngIf="resultados.length > 0">
+    <div class="top-card" [ngClass]="getNivelClass(resultados[0].nivelInteres)">
+      <div class="card-header">
+        <span class="label">Tu área principal</span>
+        <span class="interest-badge">{{ resultados[0].nivelInteres }}</span>
+      </div>
+      <h2>{{ resultados[0].categoria }}</h2>
+      <p class="perfil"><strong>Perfil:</strong> {{ resultados[0].perfil }}</p>
+      <div class="divider"></div>
+      <p class="interpretacion">{{ resultados[0].interpretacion }}</p>
+      <div class="score-pill">Puntaje: {{ resultados[0].puntuacion }} / {{ resultados[0].maxPuntuacion }}</div>
+    </div>
+
+    <div class="recommendations">
+      <h3>Carreras Recomendadas</h3>
+      <div class="carreras-grid">
+        <div *ngFor="let carrera of resultados[0].carreras" class="carrera-tag">
+          {{ carrera }}
+        </div>
+      </div>
+    </div>
+
+    <div class="motivation-box">
+      <p class="quote">"{{ resultados[0].mensaje }}"</p>
+    </div>
+
+    <div class="general-recommendation">
+      <h3>Conclusión Final</h3>
+      <div class="rec-card">
+        <p>{{ recomendacionGeneral }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="other-results" *ngIf="resultados.length > 1">
+    <h3>Otras áreas con interés</h3>
+    <div class="others-grid">
+      <div *ngFor="let res of resultados.slice(1, 4)" class="other-card">
+        <div class="other-header">
+          <h4>{{ res.categoria }}</h4>
+          <span class="small-badge" [ngClass]="getNivelClass(res.nivelInteres)">{{ res.nivelInteres }}</span>
+        </div>
+        <p>{{ res.perfil }}</p>
+        <div class="other-score">Puntos: {{ res.puntuacion }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn-reset" (click)="onReset.emit()">Realizar otro test</button>
+    <button class="btn-print" onclick="window.print()">Guardar reporte (PDF)</button>
+  </div>
+</div>

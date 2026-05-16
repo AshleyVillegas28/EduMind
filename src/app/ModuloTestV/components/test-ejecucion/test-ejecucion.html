@@ -1,0 +1,28 @@
+<div class="ejecucion-container">
+  <div class="progress-container">
+    <div class="progress-bar" [style.width.%]="progreso"></div>
+    <span class="progress-text">Pregunta {{ currentIdx + 1 }} de {{ test.preguntas.length }}</span>
+  </div>
+
+  <div class="pregunta-box" *ngIf="preguntaActual">
+    <span class="categoria-tag">{{ preguntaActual.categoria }}</span>
+    <h2>{{ preguntaActual.pregunta }}</h2>
+    
+    <div class="opciones-grid">
+      <button 
+        *ngFor="let opcion of opciones" 
+        class="opcion-btn"
+        [class.selected]="respuestaTemporal === opcion.valor"
+        (click)="seleccionarOpcion(opcion.valor)">
+        {{ opcion.texto }}
+      </button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn-nav secondary" (click)="anterior()" [disabled]="currentIdx === 0">Anterior</button>
+    <button class="btn-nav primary" (click)="siguiente()" [disabled]="respuestaTemporal === null">
+      {{ currentIdx === test.preguntas.length - 1 ? 'Finalizar' : 'Siguiente' }}
+    </button>
+  </div>
+</div>
