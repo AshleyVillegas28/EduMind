@@ -11,18 +11,20 @@ import { TestVocacionalService } from '../../services/test-vocacional.service';
   styleUrls: ['./test-resultado.css']
 })
 export class TestResultadoComponent implements OnInit {
-  @Input() resultados: ResultadoCategoria[] = [];
-  @Output() onReset = new EventEmitter<void>();
+  @Input() listaResultados: ResultadoCategoria[] = [];
+  @Output() reiniciarTest = new EventEmitter<void>();
 
-  recomendacionGeneral: string = '';
+  textoRecomendacion: string = '';
 
-  constructor(private testService: TestVocacionalService) {}
+  constructor(private serv: TestVocacionalService) {}
 
   ngOnInit() {
-    this.recomendacionGeneral = this.testService.obtenerRecomendacionGeneral(this.resultados);
+    // Pedimos la recomendacion general al servicio
+    this.textoRecomendacion = this.serv.getRecomendacion(this.listaResultados);
   }
 
-  getNivelClass(nivel: string): string {
+  // Metodo para cambiar color segun nivel
+  claseColor(nivel: string): string {
     if (nivel === 'Interés alto') return 'interest-alto';
     if (nivel === 'Interés moderado') return 'interest-moderado';
     return 'interest-bajo';

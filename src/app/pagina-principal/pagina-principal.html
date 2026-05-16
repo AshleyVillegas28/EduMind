@@ -15,7 +15,7 @@
   <section class="modules-section">
     <h3 class="section-title">MÓDULOS DEL PORTAL</h3>
     <div class="modules-grid">
-      <div class="card module-card border-blue">
+      <div class="card module-card border-blue clickable-card" (click)="openAuthInfo()">
         <div class="module-icon icon-blue">🎓</div>
         <h4 class="module-title">Autenticación y Perfiles</h4>
         <p class="module-desc">
@@ -33,7 +33,7 @@
         <span class="badge badge-teal">Módulo 2</span>
       </div>
 
-      <div class="card module-card border-orange">
+      <div class="card module-card border-orange clickable-card" (click)="goToRepo()">
         <div class="module-icon icon-orange">📚</div>
         <h4 class="module-title">Repositorio de Bienestar</h4>
         <p class="module-desc">

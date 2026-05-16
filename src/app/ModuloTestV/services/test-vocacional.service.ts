@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Test, ResultadoCategoria, Pregunta } from '../interfaces/test-vocacional.interface';
+import { Test, ResultadoCategoria } from '../interfaces/test-vocacional.interface';
 import { TESTS_DISPONIBLES, RESULTADOS_POR_CATEGORIA } from '../data/test-data';
 
 @Injectable({
@@ -7,111 +7,92 @@ import { TESTS_DISPONIBLES, RESULTADOS_POR_CATEGORIA } from '../data/test-data';
 })
 export class TestVocacionalService {
 
-  private testActual: Test | null = null;
-  private respuestas: { [idPregunta: number]: number } = {};
+  // Variables para guardar lo que pasa en el test
+  testElegido: Test | null = null;
+  respuestasUsuario: any = {};
 
   constructor() { }
 
+  // Obtener todos los tests de la data
   getTests(): Test[] {
     return TESTS_DISPONIBLES;
   }
 
-  getTestById(id: string): Test | undefined {
-    return TESTS_DISPONIBLES.find(t => t.id === id);
+  // Iniciar un nuevo test
+  empezarTest(test: Test) {
+    this.testElegido = test;
+    this.respuestasUsuario = {};
   }
 
-  iniciarTest(test: Test) {
-    this.testActual = test;
-    this.respuestas = {};
+  // Guardar respuesta de una pregunta
+  guardarPuntaje(id: number, puntos: number) {
+    this.respuestasUsuario[id] = puntos;
   }
 
-  guardarRespuesta(idPregunta: number, valor: number) {
-    this.respuestas[idPregunta] = valor;
-  }
+  // Calcular los resultados al final
+  sacarResultados(): ResultadoCategoria[] {
+    if (!this.testElegido) return [];
 
-  private obtenerNivelInteres(puntuacion: number, totalPreguntas: number): string {
-    const maxPuntaje = totalPreguntas * 5;
-    const porcentaje = (puntuacion / maxPuntaje) * 100;
-    
-    if (porcentaje <= 40) return 'Interés bajo';
-    if (porcentaje <= 70) return 'Interés moderado';
-    return 'Interés alto';
-  }
+    let resultadosFinales: ResultadoCategoria[] = [];
 
-  calcularResultados(): ResultadoCategoria[] {
-    if (!this.testActual) return [];
+    // Recorremos las categorias del test
+    for (let cat of this.testElegido.categorias) {
+      let suma = 0;
+      let contadorPreguntas = 0;
 
-    const puntuacionesPorCategoria: { [categoria: string]: number } = {};
-    
-    // Inicializar contadores
-    this.testActual.categorias.forEach(cat => {
-      puntuacionesPorCategoria[cat] = 0;
-    });
-
-    // Sumar puntuaciones
-    this.testActual.preguntas.forEach(pregunta => {
-      const respuesta = this.respuestas[pregunta.idPregunta] || 0;
-      puntuacionesPorCategoria[pregunta.categoria] += respuesta;
-    });
-
-    // Crear lista de resultados
-    const resultados: ResultadoCategoria[] = this.testActual.categorias.map(cat => {
-      const infoBase = RESULTADOS_POR_CATEGORIA[cat] || {
-        perfil: 'General',
-        interpretacion: 'Sin interpretación disponible.',
-        carreras: [],
-        mensaje: 'Continúa explorando tus opciones.'
-      };
-
-      const puntuacion = puntuacionesPorCategoria[cat];
-      const preguntasEnCat = this.testActual!.preguntas.filter(p => p.categoria === cat).length;
-
-      return {
-        categoria: cat,
-        puntuacion: puntuacion,
-        maxPuntuacion: preguntasEnCat * 5,
-        nivelInteres: this.obtenerNivelInteres(puntuacion, preguntasEnCat),
-        perfil: infoBase.perfil!,
-        interpretacion: infoBase.interpretacion!,
-        carreras: infoBase.carreras!,
-        mensaje: infoBase.mensaje!
-      };
-    });
-
-    return resultados.sort((a, b) => b.puntuacion - a.puntuacion);
-  }
-
-  obtenerRecomendacionGeneral(resultados: ResultadoCategoria[]): string {
-    if (resultados.length === 0) return '';
-
-    const top1 = resultados[0];
-    const top2 = resultados[1];
-    const top3 = resultados[2];
-
-    // Si el puntaje más alto es bajo
-    if (top1.puntuacion <= 10) {
-      return 'Aún estás en proceso de descubrir tus intereses. Explorar nuevas actividades y experiencias puede ayudarte.';
-    }
-
-    // Si hay varias áreas con puntajes altos similares (diferencia <= 2)
-    const areasAltas = resultados.filter(r => r.puntuacion >= 18);
-    if (areasAltas.length >= 2) {
-      const diff = areasAltas[0].puntuacion - areasAltas[1].puntuacion;
-      if (diff <= 2) {
-        return 'Tus intereses son variados. Puedes explorar carreras interdisciplinarias que combinen varias de tus habilidades.';
+      // Buscamos preguntas de esta categoria y sumamos sus puntos
+      for (let preg of this.testElegido.preguntas) {
+        if (preg.categoria === cat) {
+          suma += this.respuestasUsuario[preg.idPregunta] || 0;
+          contadorPreguntas++;
+        }
       }
+
+      // Buscamos la info extra de la categoria
+      const info = RESULTADOS_POR_CATEGORIA[cat];
+      
+      // Calculamos nivel (bajo, medio, alto)
+      let nivel = 'Interés bajo';
+      let porcentaje = (suma / (contadorPreguntas * 5)) * 100;
+      if (porcentaje > 40) nivel = 'Interés moderado';
+      if (porcentaje > 70) nivel = 'Interés alto';
+
+      // Agregamos al array
+      resultadosFinales.push({
+        categoria: cat,
+        puntuacion: suma,
+        maxPuntuacion: contadorPreguntas * 5,
+        nivelInteres: nivel,
+        perfil: info.perfil || 'General',
+        interpretacion: info.interpretacion || '',
+        carreras: info.carreras || [],
+        mensaje: info.mensaje || ''
+      });
     }
 
-    // Caso general de recomendación por similitud moderada
-    if (top1.puntuacion > 10 && top1.puntuacion < 18) {
-      return 'Te recomendamos investigar más sobre las carreras relacionadas para descubrir cuál se adapta mejor a tu personalidad.';
-    }
-
-    return '¡Excelente! Tienes un perfil muy definido hacia tu área principal. Explora las carreras recomendadas para dar el siguiente paso.';
+    // Ordenar de mayor a menor
+    return resultadosFinales.sort((a, b) => b.puntuacion - a.puntuacion);
   }
 
-  getProgreso(currentIdx: number): number {
-    if (!this.testActual) return 0;
-    return ((currentIdx + 1) / this.testActual.preguntas.length) * 100;
+  // Una recomendacion simple basada en el primer resultado
+  getRecomendacion(lista: ResultadoCategoria[]): string {
+    if (lista.length === 0) return '';
+    
+    let primero = lista[0];
+    
+    if (primero.puntuacion > 18) {
+      return '¡Felicidades! Tienes una vocación muy clara. Sigue tus sueños en esta área.';
+    } else if (primero.puntuacion > 10) {
+      return 'Tienes buenos intereses aquí, pero podrías investigar un poco más otras opciones.';
+    } else {
+      return 'Sigue explorando, tal vez tu verdadera vocación esté en otra de nuestras pruebas.';
+    }
+  }
+
+  // Calcular el porcentaje de progreso para la barra
+  calcularProgreso(index: number): number {
+    if (!this.testElegido) return 0;
+    let total = this.testElegido.preguntas.length;
+    return ((index + 1) / total) * 100;
   }
 }

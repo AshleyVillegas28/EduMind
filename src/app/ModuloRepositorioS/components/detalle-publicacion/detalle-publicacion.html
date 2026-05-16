@@ -1,0 +1,40 @@
+<div class="detalle-container">
+  <div class="detalle-header">
+    <button class="btn-close" (click)="cerrar()">✕</button>
+    <div class="header-info">
+      <span class="cat-tag">{{ pub.categoria }}</span>
+      <h1>{{ pub.titulo }}</h1>
+      <div class="meta">
+        <span>Por <strong>{{ pub.autor }}</strong></span>
+        <span>•</span>
+        <span>{{ pub.fecha | date:'longDate' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="detalle-body">
+    <div class="main-image" *ngIf="pub.imagenUrl">
+      <img [src]="pub.imagenUrl" alt="Imagen del artículo">
+    </div>
+
+    <div class="content">
+      <h3>Resumen</h3>
+      <p>{{ pub.descripcion }}</p>
+
+      <div class="tags" *ngIf="pub.etiquetas.length > 0">
+        <span *ngFor="let tag of pub.etiquetas" class="tag">#{{ tag }}</span>
+      </div>
+
+      <div class="resources-section" *ngIf="pub.pdfUrl">
+        <div class="pdf-card">
+          <div class="pdf-icon">📄</div>
+          <div class="pdf-info">
+            <h4>Documento Adjunto</h4>
+            <p>Guía o recurso relacionado en formato PDF</p>
+          </div>
+          <button class="btn-download" (click)="verPDF()">Ver / Descargar PDF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

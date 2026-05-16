@@ -11,19 +11,25 @@ import { Test } from '../../interfaces/test-vocacional.interface';
   styleUrls: ['./test-inicio.css']
 })
 export class TestInicioComponent implements OnInit {
-  testsGenerales: Test[] = [];
-  testsEspecificos: Test[] = [];
-  @Output() onStart = new EventEmitter<Test>();
+  // Listas para mostrar en el HTML
+  listaGenerales: Test[] = [];
+  listaEspecificos: Test[] = [];
 
-  constructor(private testService: TestVocacionalService) {}
+  @Output() enviarTest = new EventEmitter<Test>();
+
+  constructor(private miServicio: TestVocacionalService) {}
 
   ngOnInit() {
-    const allTests = this.testService.getTests();
-    this.testsGenerales = allTests.filter(t => t.id.includes('general'));
-    this.testsEspecificos = allTests.filter(t => t.id.includes('especifico'));
+    // Traer los tests del servicio
+    const todos = this.miServicio.getTests();
+    
+    // Filtrar por tipo usando el ID
+    this.listaGenerales = todos.filter(t => t.id.includes('general'));
+    this.listaEspecificos = todos.filter(t => t.id.includes('especifico'));
   }
 
-  seleccionar(test: Test) {
-    this.onStart.emit(test);
+  // Cuando el usuario hace clic en un test
+  empezar(test: Test) {
+    this.enviarTest.emit(test);
   }
 }

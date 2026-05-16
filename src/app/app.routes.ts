@@ -4,6 +4,8 @@ import { PaginaPrincipal } from './pagina-principal/pagina-principal';
 import { TablaCrud } from './tabla-crud/tabla-crud';
 import { TestVocacionalComponent } from './ModuloTestV/test-vocacional/test-vocacional';
 import { BuzonAnonimo } from './buzon-anonimo/buzon-anonimo';
+import { PerfilUsuario } from './RegistroModuloC/components/perfil-usuario/perfil-usuario';
+import { BlogPrincipal } from './ModuloRepositorioS/components/blog-principal/blog-principal';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -12,5 +14,7 @@ export const routes: Routes = [
   { path: 'buzon-anonimo', component: BuzonAnonimo },
   { path: 'tabla-crud', component: TablaCrud },
   { path: 'test-vocacional', component: TestVocacionalComponent },
+  { path: 'perfil-usuario', component: PerfilUsuario },
+  { path: 'repositorio-bienestar', component: BlogPrincipal },
   { path: '**', redirectTo: '/login' },
 ];

@@ -1,0 +1,76 @@
+<div class="perfil-page">
+  <div class="perfil-container" *ngIf="usuario">
+    <div class="perfil-header">
+      <div class="avatar-section">
+        <div class="avatar-placeholder">
+          {{ usuario.nombreCompleto.charAt(0) }}
+        </div>
+        <div class="user-main-info">
+          <h1>{{ usuario.nombreCompleto }}</h1>
+          <span class="role-badge" [ngClass]="usuario.tipoUsuario.toLowerCase()">{{ usuario.tipoUsuario }}</span>
+        </div>
+      </div>
+      <button class="btn-edit" (click)="cambiarModo()">
+        {{ modoEdicion ? 'Cancelar' : 'Editar Perfil' }}
+      </button>
+    </div>
+
+    <div class="perfil-content">
+      <div class="perfil-grid">
+        <!-- Información de Cuenta -->
+        <div class="perfil-card">
+          <div class="card-header">
+            <h3>Información de Cuenta</h3>
+          </div>
+          <div class="card-body">
+            <div class="info-item">
+              <label>Usuario</label>
+              <p>{{ usuario.usuario }}</p>
+            </div>
+            <div class="info-item">
+              <label>Correo Electrónico</label>
+              <p>{{ usuario.correo }}</p>
+            </div>
+            <div class="info-item">
+              <label>Fecha de Registro</label>
+              <p>{{ usuario.fechaRegistro | date:'mediumDate' }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Información Académica / Profesional -->
+        <div class="perfil-card">
+          <div class="card-header">
+            <h3>{{ usuario.tipoUsuario === 'Estudiante' ? 'Información Académica' : 'Información Profesional' }}</h3>
+          </div>
+          <div class="card-body">
+            <div class="info-item" *ngIf="usuario.tipoUsuario === 'Estudiante'">
+              <label>Carrera</label>
+              <input type="text" [(ngModel)]="datosEditados.carrera" *ngIf="modoEdicion" class="edit-input">
+              <p *ngIf="!modoEdicion">{{ usuario.carrera || 'No especificada' }}</p>
+            </div>
+            <div class="info-item" *ngIf="usuario.tipoUsuario === 'Estudiante'">
+              <label>Semestre</label>
+              <input type="text" [(ngModel)]="datosEditados.semestre" *ngIf="modoEdicion" class="edit-input">
+              <p *ngIf="!modoEdicion">{{ usuario.semestre || 'No especificado' }}</p>
+            </div>
+            <div class="info-item full-width">
+              <label>Información Adicional</label>
+              <textarea [(ngModel)]="datosEditados.infoAdicional" *ngIf="modoEdicion" class="edit-textarea"></textarea>
+              <p *ngIf="!modoEdicion">{{ usuario.infoAdicional || 'Sin información adicional.' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfil-actions" *ngIf="modoEdicion">
+        <button class="btn-save" (click)="guardar()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-user" *ngIf="!usuario">
+    <h2>Inicia sesión para ver tu perfil</h2>
+    <button class="btn-primary" (click)="volver()">Volver al Inicio</button>
+  </div>
+</div>

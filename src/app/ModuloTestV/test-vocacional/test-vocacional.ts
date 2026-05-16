@@ -13,23 +13,29 @@ import { Test, ResultadoCategoria } from '../interfaces/test-vocacional.interfac
   styleUrls: ['./test-vocacional.css']
 })
 export class TestVocacionalComponent {
-  estado: 'inicio' | 'ejecucion' | 'resultado' = 'inicio';
+  // Estado para controlar que pantalla mostrar
+  pantalla: 'inicio' | 'ejecucion' | 'resultado' = 'inicio';
+  
+  // Datos que se pasan entre pantallas
   testSeleccionado: Test | null = null;
-  resultadosFinales: ResultadoCategoria[] = [];
+  resultados: ResultadoCategoria[] = [];
 
-  comenzarTest(test: Test) {
+  // Recibir test de la pantalla inicio
+  iniciar(test: Test) {
     this.testSeleccionado = test;
-    this.estado = 'ejecucion';
+    this.pantalla = 'ejecucion';
   }
 
-  mostrarResultados(resultados: ResultadoCategoria[]) {
-    this.resultadosFinales = resultados;
-    this.estado = 'resultado';
+  // Recibir resultados de la ejecucion
+  finalizar(res: ResultadoCategoria[]) {
+    this.resultados = res;
+    this.pantalla = 'resultado';
   }
 
-  reiniciar() {
-    this.estado = 'inicio';
+  // Volver a empezar
+  irInicio() {
+    this.pantalla = 'inicio';
     this.testSeleccionado = null;
-    this.resultadosFinales = [];
+    this.resultados = [];
   }
 }

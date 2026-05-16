@@ -8,7 +8,7 @@
   <div class="tests-section">
     <h2 class="section-subtitle">Test General</h2>
     <div class="tests-list">
-      <div *ngFor="let test of testsGenerales" class="test-item" (click)="seleccionar(test)">
+      <div *ngFor="let test of listaGenerales" class="test-item" (click)="empezar(test)">
         <div class="test-info">
           <h3>{{ test.nombre }}</h3>
           <p>{{ test.descripcion }}</p>
@@ -25,7 +25,7 @@
   <div class="tests-section">
     <h2 class="section-subtitle">Tests Específicos</h2>
     <div class="tests-grid">
-      <div *ngFor="let test of testsEspecificos" class="test-item-mini" (click)="seleccionar(test)">
+      <div *ngFor="let test of listaEspecificos" class="test-item-mini" (click)="empezar(test)">
         <div class="test-info">
           <h3>{{ test.nombre }}</h3>
           <div class="meta">

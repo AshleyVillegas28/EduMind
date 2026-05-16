@@ -1,0 +1,70 @@
+<div class="registro-container">
+  <div class="header">
+    <h2>Crear Cuenta</h2>
+    <p>Únete a EduMind para acceder a todos los beneficios.</p>
+  </div>
+
+  <form (ngSubmit)="enviarFormulario()" #registroForm="ngForm" class="registro-form">
+    <div class="form-grid">
+      <div class="form-group full-width">
+        <label for="nombreCompleto">Nombre Completo</label>
+        <input type="text" id="nombreCompleto" name="nombreCompleto" [(ngModel)]="datos.nombreCompleto" required placeholder="Juan Pérez">
+      </div>
+
+      <div class="form-group">
+        <label for="usuario">Usuario</label>
+        <input type="text" id="usuario" name="usuario" [(ngModel)]="datos.usuario" required placeholder="juanperez">
+      </div>
+
+      <div class="form-group">
+        <label for="correo">Correo Electrónico</label>
+        <input type="email" id="correo" name="correo" [(ngModel)]="datos.correo" required placeholder="juan@ejemplo.com">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" [(ngModel)]="datos.password" required placeholder="••••••••">
+      </div>
+
+      <div class="form-group">
+        <label for="confirmarPassword">Confirmar Contraseña</label>
+        <input type="password" id="confirmarPassword" name="confirmarPassword" [(ngModel)]="datos.confirmarPassword" required placeholder="••••••••">
+      </div>
+
+      <div class="form-group">
+        <label for="tipoUsuario">Tipo de Usuario</label>
+        <select id="tipoUsuario" name="tipoUsuario" [(ngModel)]="datos.tipoUsuario" required>
+          <option value="Estudiante">Estudiante</option>
+          <option value="Psicólogo">Psicólogo</option>
+        </select>
+      </div>
+
+      <div class="form-group" *ngIf="datos.tipoUsuario === 'Estudiante'">
+        <label for="carrera">Carrera</label>
+        <input type="text" id="carrera" name="carrera" [(ngModel)]="datos.carrera" placeholder="Ingeniería...">
+      </div>
+
+      <div class="form-group" *ngIf="datos.tipoUsuario === 'Estudiante'">
+        <label for="semestre">Semestre</label>
+        <input type="text" id="semestre" name="semestre" [(ngModel)]="datos.semestre" placeholder="5to Semestre">
+      </div>
+
+      <div class="form-group full-width">
+        <label for="fotoPerfil">URL Foto de Perfil (Opcional)</label>
+        <input type="text" id="fotoPerfil" name="fotoPerfil" [(ngModel)]="datos.fotoPerfil" placeholder="https://ejemplo.com/foto.jpg">
+      </div>
+
+      <div class="form-group full-width">
+        <label for="infoAdicional">Información Adicional (Opcional)</label>
+        <textarea id="infoAdicional" name="infoAdicional" [(ngModel)]="datos.infoAdicional" placeholder="Cuéntanos un poco sobre ti..."></textarea>
+      </div>
+    </div>
+
+    <div class="error-message" *ngIf="error">{{ error }}</div>
+
+    <div class="actions">
+      <button type="button" class="btn-cancel" (click)="cerrar()">Cancelar</button>
+      <button type="submit" class="btn-submit" [disabled]="!registroForm.form.valid">Registrarse</button>
+    </div>
+  </form>
+</div>

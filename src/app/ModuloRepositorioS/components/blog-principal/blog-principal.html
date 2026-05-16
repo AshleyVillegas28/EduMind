@@ -1,0 +1,60 @@
+<div class="blog-container">
+  <div class="blog-header">
+    <div class="header-content">
+      <h1>Repositorio de Bienestar</h1>
+      <p>Artículos, guías y recursos para tu crecimiento personal y académico.</p>
+    </div>
+    <div class="header-actions" *ngIf="esPsicologo">
+      <button class="btn-create" (click)="abrirDialogoCrear()">
+        <span class="icon">➕</span> Nueva Publicación
+      </button>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <input 
+      type="text" 
+      placeholder="Buscar por título o categoría..." 
+      [(ngModel)]="filtroBusqueda"
+      (input)="filtrar()">
+    <div class="filter-badges">
+      <span 
+        class="badge" 
+        [class.active]="categoriaActual === 'Todas'"
+        (click)="cambiarCategoria('Todas')">Todas</span>
+      <span 
+        *ngFor="let cat of categorias" 
+        class="badge"
+        [class.active]="categoriaActual === cat"
+        (click)="cambiarCategoria(cat)">{{ cat }}</span>
+    </div>
+  </div>
+
+  <div class="publicaciones-grid">
+    <div *ngFor="let pub of listaMostrada" class="pub-card">
+      <div class="pub-image">
+        <img [src]="pub.imagenUrl || 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=500'" alt="Imagen publicación">
+        <span class="pub-cat">{{ pub.categoria }}</span>
+      </div>
+      <div class="pub-info">
+        <h3>{{ pub.titulo }}</h3>
+        <p class="pub-desc">{{ pub.descripcion }}</p>
+        <div class="pub-meta">
+          <span class="author">Por: {{ pub.autor }}</span>
+          <span class="date">{{ pub.fecha | date:'mediumDate' }}</span>
+        </div>
+        <div class="pub-actions">
+          <button class="btn-view" (click)="verDetalle(pub)">Leer más</button>
+          <div class="admin-actions" *ngIf="esPsicologo">
+            <button class="btn-icon edit" (click)="abrirDialogoEditar(pub)" title="Editar">✏️</button>
+            <button class="btn-icon delete" (click)="eliminar(pub)" title="Eliminar">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-results" *ngIf="listaMostrada.length === 0">
+    <p>No se encontraron publicaciones que coincidan con tu búsqueda.</p>
+  </div>
+</div>

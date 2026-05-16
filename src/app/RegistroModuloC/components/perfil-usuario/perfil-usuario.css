@@ -1,0 +1,185 @@
+.perfil-page {
+  padding: 4rem 2rem;
+  min-height: 80vh;
+  background-color: #f8fafc;
+  display: flex;
+  justify-content: center;
+}
+
+.perfil-container {
+  width: 100%;
+  max-width: 900px;
+  background: white;
+  border-radius: 2rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.perfil-header {
+  background: linear-gradient(135deg, #036b85 0%, #00a8cc 100%);
+  padding: 4rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.avatar-placeholder {
+  width: 100px;
+  height: 100px;
+  background: rgba(255,255,255,0.2);
+  border: 4px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.user-main-info h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.2);
+}
+
+.btn-edit {
+  background: white;
+  color: #036b85;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn-edit:hover { transform: scale(1.05); }
+
+.perfil-content {
+  padding: 4rem;
+}
+
+.perfil-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.perfil-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.card-header {
+  background: #f8fafc;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.card-header h3 {
+  font-size: 1.6rem;
+  color: #1e293b;
+}
+
+.card-body {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-item label {
+  display: block;
+  font-size: 1.2rem;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.info-item p {
+  font-size: 1.6rem;
+  color: #334155;
+  font-weight: 500;
+}
+
+.edit-input, .edit-textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.8rem;
+  font-size: 1.4rem;
+}
+
+.edit-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.perfil-actions {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-save {
+  background: #8cc63f;
+  color: white;
+  border: none;
+  padding: 1.5rem 4rem;
+  border-radius: 1rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-save:hover {
+  background: #7ab336;
+  box-shadow: 0 4px 12px rgba(140, 198, 63, 0.3);
+}
+
+.no-user {
+  text-align: center;
+  margin-top: 10rem;
+}
+
+.no-user h2 {
+  font-size: 2.4rem;
+  color: #64748b;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .perfil-grid {
+    grid-template-columns: 1fr;
+  }
+  .perfil-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .avatar-section {
+    flex-direction: column;
+  }
+}

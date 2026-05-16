@@ -1,0 +1,53 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <h2>{{ modo === 'crear' ? 'Nueva Publicación' : 'Editar Publicación' }}</h2>
+    <p>Completa los campos para {{ modo === 'crear' ? 'subir' : 'actualizar' }} el contenido.</p>
+  </div>
+
+  <form #pubForm="ngForm" (ngSubmit)="guardar()" class="form-grid">
+    <div class="form-group full">
+      <label>Título del Artículo</label>
+      <input type="text" name="titulo" [(ngModel)]="pub.titulo" required placeholder="Ej: Importancia del Sueño">
+    </div>
+
+    <div class="form-group full">
+      <label>Descripción corta</label>
+      <textarea name="descripcion" [(ngModel)]="pub.descripcion" required rows="3" placeholder="Resume de qué trata..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Categoría</label>
+      <select name="categoria" [(ngModel)]="pub.categoria" required>
+        <option value="Salud Mental">Salud Mental</option>
+        <option value="Tips">Tips</option>
+        <option value="Guías">Guías</option>
+        <option value="Orientación">Orientación</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Etiquetas (separadas por coma)</label>
+      <input type="text" name="tags" [(ngModel)]="etiquetasString" placeholder="bienestar, salud, guia">
+    </div>
+
+    <div class="form-group full">
+      <label>URL Imagen (Opcional)</label>
+      <input type="text" name="imagen" [(ngModel)]="pub.imagenUrl" placeholder="https://ejemplo.com/imagen.jpg">
+    </div>
+
+    <div class="form-group full">
+      <label>Subir PDF</label>
+      <div class="file-input-wrapper">
+        <input type="file" (change)="seleccionarPDF($event)" accept="application/pdf">
+        <p class="file-name" *ngIf="pub.pdfUrl">✓ Archivo PDF cargado</p>
+      </div>
+    </div>
+
+    <div class="dialog-actions">
+      <button type="button" class="btn-cancel" (click)="cerrar()">Cancelar</button>
+      <button type="submit" class="btn-save" [disabled]="!pubForm.valid">
+        {{ modo === 'crear' ? 'Publicar' : 'Guardar Cambios' }}
+      </button>
+    </div>
+  </form>
+</div>

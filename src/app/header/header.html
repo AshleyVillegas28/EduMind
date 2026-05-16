@@ -1,16 +1,18 @@
 <header class="header">
   <div class="logo">
     <a class="logo-link"
-       [routerLink]="isLoggedIn ? '/pagina-principal' : null"
-       [class.logo-link--active]="isLoggedIn">
+       [routerLink]="estaLogueado ? '/pagina-principal' : null"
+       [class.logo-link--active]="estaLogueado">
       <h1><span class="logo-edu">Edu</span><span class="logo-mind">Mind</span></h1>
     </a>
   </div>
   <nav class="nav-buttons">
     <button class="btn-secondary" (click)="onAcercaDe()">Acerca de</button>
-    <ng-container *ngIf="isLoggedIn; else loginButton">
+    <ng-container *ngIf="estaLogueado; else loginButton">
       <button class="btn-secondary" routerLink="/tabla-crud">Tabla</button>
-      <span class="user-welcome">Bienvenido, {{ userName }}</span>
+      <span class="user-welcome" (click)="goToProfile()">
+        Bienvenido, {{ nombreUsuario }}
+      </span>
       <button class="btn-primary" (click)="logout()">Cerrar Sesión</button>
     </ng-container>
     <ng-template #loginButton>

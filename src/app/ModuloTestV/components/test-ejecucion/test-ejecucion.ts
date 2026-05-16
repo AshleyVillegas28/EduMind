@@ -12,55 +12,60 @@ import { OPCIONES_GLOBALES } from '../../data/test-data';
   styleUrls: ['./test-ejecucion.css']
 })
 export class TestEjecucionComponent implements OnInit {
-  @Input() test!: Test;
-  @Output() onFinish = new EventEmitter<ResultadoCategoria[]>();
+  @Input() testActual!: Test;
+  @Output() alFinalizar = new EventEmitter<ResultadoCategoria[]>();
 
-  currentIdx = 0;
-  progreso = 0;
-  opciones = OPCIONES_GLOBALES;
-  respuestaTemporal: number | null = null;
-  respuestasUsuario: { [key: number]: number } = {};
+  indicePregunta = 0;
+  progresoBarra = 0;
+  opcionesDisponibles = OPCIONES_GLOBALES;
+  puntosPregunta: number | null = null;
+  misRespuestas: any = {};
 
-  constructor(private testService: TestVocacionalService) {}
+  constructor(private servicio: TestVocacionalService) {}
 
   ngOnInit() {
-    this.testService.iniciarTest(this.test);
-    this.updateProgreso();
+    this.servicio.empezarTest(this.testActual);
+    this.actualizarProgreso();
   }
 
-  get preguntaActual(): Pregunta {
-    return this.test.preguntas[this.currentIdx];
+  get preg() {
+    return this.testActual.preguntas[this.indicePregunta];
   }
 
-  seleccionarOpcion(valor: number) {
-    this.respuestaTemporal = valor;
+  marcar(valor: number) {
+    this.puntosPregunta = valor;
   }
 
-  updateProgreso() {
-    this.progreso = this.testService.getProgreso(this.currentIdx);
+  actualizarProgreso() {
+    this.progresoBarra = this.servicio.calcularProgreso(this.indicePregunta);
   }
 
-  siguiente() {
-    if (this.respuestaTemporal !== null) {
-      this.testService.guardarRespuesta(this.preguntaActual.idPregunta, this.respuestaTemporal);
-      this.respuestasUsuario[this.currentIdx] = this.respuestaTemporal;
+  irSiguiente() {
+    if (this.puntosPregunta !== null) {
+      // Guardamos la respuesta en el servicio
+      this.servicio.guardarPuntaje(this.preg.idPregunta, this.puntosPregunta);
+      this.misRespuestas[this.indicePregunta] = this.puntosPregunta;
 
-      if (this.currentIdx < this.test.preguntas.length - 1) {
-        this.currentIdx++;
-        this.respuestaTemporal = this.respuestasUsuario[this.currentIdx] ?? null;
-        this.updateProgreso();
+      // Si no es la ultima, avanzamos
+      if (this.indicePregunta < this.testActual.preguntas.length - 1) {
+        this.indicePregunta++;
+        // Si ya habia respondido esta pregunta antes (por boton anterior) recuperamos el valor
+        this.puntosPregunta = this.misRespuestas[this.indicePregunta] || null;
+        this.actualizarProgreso();
       } else {
-        const resultados = this.testService.calcularResultados();
-        this.onFinish.emit(resultados);
+        // Es la ultima, sacamos resultados
+        const res = this.servicio.sacarResultados();
+        this.alFinalizar.emit(res);
       }
     }
   }
 
-  anterior() {
-    if (this.currentIdx > 0) {
-      this.currentIdx--;
-      this.respuestaTemporal = this.respuestasUsuario[this.currentIdx] ?? null;
-      this.updateProgreso();
+  irAnterior() {
+    if (this.indicePregunta > 0) {
+      this.indicePregunta--;
+      // Recuperamos lo que habia marcado
+      this.puntosPregunta = this.misRespuestas[this.indicePregunta] || null;
+      this.actualizarProgreso();
     }
   }
 }

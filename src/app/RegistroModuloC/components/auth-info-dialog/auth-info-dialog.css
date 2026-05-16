@@ -1,0 +1,93 @@
+.info-dialog {
+  padding: 3rem;
+  max-width: 500px;
+  background: white;
+  border-radius: 2rem;
+}
+
+.info-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  background: #f0f9ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 0 auto 1.5rem;
+}
+
+.info-header h2 {
+  color: #036b85;
+  font-size: 2.2rem;
+}
+
+.intro {
+  color: #64748b;
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-item {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 1.2rem;
+  transition: transform 0.2s;
+}
+
+.info-item:hover {
+  transform: translateX(5px);
+  background: #f1f5f9;
+}
+
+.item-icon {
+  font-size: 2.4rem;
+}
+
+.item-text h4 {
+  font-size: 1.5rem;
+  color: #1e293b;
+  margin-bottom: 0.4rem;
+}
+
+.item-text p {
+  font-size: 1.3rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.info-actions {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-close {
+  background: #00a8cc;
+  color: white;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-close:hover {
+  background: #036b85;
+}

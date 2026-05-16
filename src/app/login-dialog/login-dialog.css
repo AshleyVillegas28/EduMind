@@ -149,6 +149,25 @@
   }
 }
 
+.register-hint {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.3rem;
+  color: #64748b;
+}
+
+.register-link {
+  color: #00a8cc;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 0.5rem;
+}
+
+.register-link:hover {
+  color: #036b85;
+}
+
 .credentials-hint {
   margin-top: 1.5rem;
   padding-top: 1rem;

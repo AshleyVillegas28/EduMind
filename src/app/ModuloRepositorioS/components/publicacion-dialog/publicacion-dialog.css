@@ -1,0 +1,89 @@
+.dialog-container {
+  padding: 3rem;
+  background: white;
+  border-radius: 1.5rem;
+}
+
+.dialog-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.dialog-header h2 {
+  font-size: 2.4rem;
+  color: #036b85;
+  margin-bottom: 0.5rem;
+}
+
+.dialog-header p {
+  font-size: 1.4rem;
+  color: #64748b;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.form-group.full {
+  grid-column: span 2;
+}
+
+.form-group label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.8rem;
+  font-size: 1.4rem;
+}
+
+.file-input-wrapper {
+  padding: 2rem;
+  border: 2px dashed #e2e8f0;
+  border-radius: 1rem;
+  text-align: center;
+  background: #f8fafc;
+}
+
+.file-name {
+  margin-top: 1rem;
+  color: #8cc63f;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.dialog-actions {
+  grid-column: span 2;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.btn-cancel, .btn-save {
+  padding: 1rem 2.5rem;
+  border-radius: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-cancel { background: #f1f5f9; color: #475569; }
+
+.btn-save { background: #8cc63f; color: white; }
+
+.btn-save:disabled { opacity: 0.5; cursor: not-allowed; }
