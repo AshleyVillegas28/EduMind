@@ -73,8 +73,13 @@
 }
 
 @keyframes flotar {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .hero-titulo {
@@ -85,7 +90,7 @@
 }
 
 .hero-subtitulo {
-  font-size: 1rem;
+  font-size: 1.5rem;
   opacity: 0.9;
   margin: 0 0 2rem;
   max-width: 500px;
@@ -109,7 +114,7 @@
   border: 2px solid rgba(255, 255, 255, 0.4);
   background: transparent;
   color: var(--blanco);
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transicion);
@@ -134,7 +139,7 @@
 .badge {
   background: var(--verde-lima);
   color: #1a1a1a;
-  font-size: 0.7rem;
+  font-size: 0.95rem;
   font-weight: 700;
   padding: 0.1rem 0.45rem;
   border-radius: 50px;
@@ -148,8 +153,14 @@
 }
 
 @keyframes aparecer {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /*CARDS*/
@@ -178,7 +189,7 @@
   color: var(--purpura-oscuro);
   padding: 0.4rem 0.9rem;
   border-radius: 50px;
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   font-weight: 600;
 }
 
@@ -198,7 +209,7 @@
 .campo-label {
   font-weight: 600;
   color: #334155;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
 }
 
 .select-wrapper {
@@ -210,12 +221,14 @@
   padding: 0.9rem 2.5rem 0.9rem 1rem;
   border: 2px solid var(--gris-borde);
   border-radius: var(--radio-sm);
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #334155;
   background: #fafafa;
   appearance: none;
   cursor: pointer;
-  transition: border-color var(--transicion), box-shadow var(--transicion);
+  transition:
+    border-color var(--transicion),
+    box-shadow var(--transicion);
 }
 
 .campo-select:focus {
@@ -238,13 +251,15 @@
   padding: 1rem;
   border: 2px solid var(--gris-borde);
   border-radius: var(--radio-sm);
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-family: inherit;
   color: #334155;
   background: #fafafa;
   resize: vertical;
   min-height: 140px;
-  transition: border-color var(--transicion), box-shadow var(--transicion);
+  transition:
+    border-color var(--transicion),
+    box-shadow var(--transicion);
   line-height: 1.6;
 }
 
@@ -260,7 +275,7 @@
 
 .contador-chars {
   text-align: right;
-  font-size: 0.8rem;
+  font-size: 1.05rem;
   color: #94a3b8;
   transition: color var(--transicion);
 }
@@ -276,7 +291,7 @@
   padding: 0.75rem 1rem;
   border-radius: var(--radio-sm);
   border: 1px solid #fecaca;
-  font-size: 0.9rem;
+  font-size: 1.15rem;
 }
 
 /*BOTONES*/
@@ -286,7 +301,7 @@
   color: var(--blanco);
   border: none;
   border-radius: var(--radio-sm);
-  font-size: 1.05rem;
+  font-size: 1.3rem;
   font-weight: 700;
   cursor: pointer;
   transition: all var(--transicion);
@@ -314,7 +329,7 @@
   color: var(--purpura-oscuro);
   border: 2px solid var(--purpura-medio);
   border-radius: var(--radio-sm);
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transicion);
@@ -353,7 +368,9 @@
 }
 
 @keyframes girar {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /*NOTA DE PRIVACIDAD*/
@@ -362,7 +379,7 @@
   padding: 1rem;
   background: var(--cian-claro);
   border-radius: var(--radio-sm);
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   color: var(--cian);
   border-left: 3px solid var(--cian);
   line-height: 1.5;
@@ -384,9 +401,17 @@
 }
 
 @keyframes rebotar {
-  0% { transform: scale(0.5); opacity: 0; }
-  70% { transform: scale(1.15); }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .exito-card h2 {
@@ -412,7 +437,7 @@
   background: var(--gris-fondo);
   padding: 0.4rem 0.9rem;
   border-radius: 50px;
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   color: var(--gris-texto);
   font-weight: 500;
 }
@@ -443,9 +468,11 @@
   padding: 0.85rem 1rem 0.85rem 2.8rem;
   border: 2px solid var(--gris-borde);
   border-radius: var(--radio-sm);
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   background: var(--blanco);
-  transition: border-color var(--transicion), box-shadow var(--transicion);
+  transition:
+    border-color var(--transicion),
+    box-shadow var(--transicion);
   box-sizing: border-box;
 }
 
@@ -467,7 +494,7 @@
   border: 2px solid var(--gris-borde);
   background: var(--blanco);
   color: var(--gris-texto);
-  font-size: 0.82rem;
+  font-size: 1.07rem;
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transicion);
@@ -520,19 +547,34 @@
 .tag {
   padding: 0.3rem 0.8rem;
   border-radius: 50px;
-  font-size: 0.78rem;
+  font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: 0.2px;
 }
 
-.tag-azul { background: #dbeafe; color: #1d4ed8; }
-.tag-verde { background: #dcfce7; color: #15803d; }
-.tag-naranja { background: #fef3c7; color: #b45309; }
-.tag-cian { background: var(--cian-claro); color: var(--cian); }
-.tag-purpura { background: var(--purpura-suave); color: var(--purpura-oscuro); }
+.tag-azul {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.tag-verde {
+  background: #dcfce7;
+  color: #15803d;
+}
+.tag-naranja {
+  background: #fef3c7;
+  color: #b45309;
+}
+.tag-cian {
+  background: var(--cian-claro);
+  color: var(--cian);
+}
+.tag-purpura {
+  background: var(--purpura-suave);
+  color: var(--purpura-oscuro);
+}
 
 .fecha-texto {
-  font-size: 0.78rem;
+  font-size: 1.05rem;
   color: #94a3b8;
 }
 
@@ -556,7 +598,7 @@
 
 .pregunta-texto {
   color: #334155;
-  font-size: 0.97rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   margin: 0;
   font-style: italic;
@@ -579,7 +621,7 @@
 }
 
 .resp-etiqueta {
-  font-size: 0.8rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--purpura-oscuro);
   text-transform: uppercase;
@@ -588,7 +630,7 @@
 
 .respuesta-texto {
   color: #334155;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   line-height: 1.65;
   margin: 0;
 }
@@ -621,7 +663,7 @@
   padding-top: 1.5rem;
   border-top: 1px solid var(--gris-borde);
   color: var(--gris-texto);
-  font-size: 0.95rem;
+  font-size: 1.2rem;
 }
 
 /*RESPONSIVE*/
@@ -649,7 +691,7 @@
 
   .tab-btn {
     padding: 0.55rem 1.1rem;
-    font-size: 0.88rem;
+    font-size: 1.1rem;
   }
 
   .garantias {
