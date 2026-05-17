@@ -1,0 +1,76 @@
+<div class="citas-page">
+  <div class="citas-container">
+    <div class="citas-header">
+      <div class="header-content">
+        <h2>Mis Citas</h2>
+        <p>Revisa el estado de tus citas y gestiona tus próximas sesiones.</p>
+      </div>
+      <button class="btn-agendar" routerLink="/seleccionar-profesional">Agendar nueva cita</button>
+    </div>
+
+    <div class="citas-content">
+      <!-- Filtros -->
+      <div class="filtros-container">
+        <button
+          (click)="filtrar('Todas')"
+          [class.active]="filtroActual === 'Todas'"
+          class="btn-filtro"
+        >
+          Todas
+        </button>
+        <button
+          (click)="filtrar('Pendiente')"
+          [class.active]="filtroActual === 'Pendiente'"
+          class="btn-filtro"
+        >
+          Pendientes
+        </button>
+        <button
+          (click)="filtrar('Cancelada')"
+          [class.active]="filtroActual === 'Cancelada'"
+          class="btn-filtro"
+        >
+          Canceladas
+        </button>
+      </div>
+
+      <!-- Lista de Citas -->
+      <div *ngIf="citasFiltradas.length > 0; else noCitas" class="citas-grid">
+        <div *ngFor="let cita of citasFiltradas" class="cita-card">
+          <div class="cita-card-header">
+            <div class="psicologo-info">
+              <small class="cita-fecha">{{ cita.fecha }} · {{ cita.hora }}</small>
+              <h3>{{ cita.psicologoNombre }}</h3>
+              <p class="cita-modalidad">{{ cita.modalidad }} · {{ cita.psicologoEspecialidad }}</p>
+            </div>
+            <div class="estado-badge-container">
+              <span class="estado-badge" [ngClass]="cita.estado.toLowerCase()">
+                {{ cita.estado }}
+              </span>
+            </div>
+          </div>
+
+          <div class="cita-motivo">
+            <p><strong>Motivo:</strong> {{ cita.motivo }}</p>
+          </div>
+
+          <div class="cita-actions" *ngIf="cita.estado === 'Pendiente'">
+            <button (click)="cancelarCita(cita.id)" class="btn-cancelar">
+              Cancelar Cita
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estado Vacio -->
+      <ng-template #noCitas>
+        <div class="estado-vacio">
+          <div class="vacio-icon">📅</div>
+          <h3>Aún no tienes citas</h3>
+          <p>Explora psicólogos y agenda tu primera sesión.</p>
+          <button class="btn-agendar mt-3" routerLink="/seleccionar-profesional">Agendar nueva cita</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

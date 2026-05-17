@@ -1,0 +1,160 @@
+.seleccionar-page {
+  padding: 4rem 2rem;
+  min-height: 80vh;
+  background-color: #f8fafc;
+  display: flex;
+  justify-content: center;
+}
+
+.seleccionar-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+.seleccionar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.header-content h2 {
+  font-size: 2.2rem;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.header-content p {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.btn-volver {
+  background: white;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-volver:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.profesionales-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.profesional-card {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.profesional-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  border-color: #cbd5e1;
+}
+
+.profesional-avatar {
+  flex-shrink: 0;
+}
+
+.avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+.profesional-info {
+  flex: 1;
+}
+
+.profesional-info h3 {
+  font-size: 1.6rem;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+}
+
+.especialidad {
+  color: #4f46e5;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.8rem;
+}
+
+.rating-exp {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 0.8rem;
+}
+
+.disponibilidad {
+  display: inline-block;
+}
+
+.badge-disponible {
+  background-color: #dcfce7;
+  color: #15803d;
+  padding: 0.4rem 0.8rem;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.profesional-action {
+  flex-shrink: 0;
+}
+
+.btn-seleccionar {
+  background-color: #eff6ff;
+  color: #4f46e5;
+  border: 1px solid #4f46e5;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.profesional-card:hover .btn-seleccionar {
+  background-color: #4f46e5;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .profesional-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  .seleccionar-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,32 @@
+<div class="seleccionar-page">
+  <div class="seleccionar-container">
+    <div class="seleccionar-header">
+      <div class="header-content">
+        <h2>Seleccionar Profesional</h2>
+        <p>Elige al psicólogo con el que deseas agendar tu cita.</p>
+      </div>
+      <button class="btn-volver" routerLink="/mis-citas">Volver a mis citas</button>
+    </div>
+
+    <div class="profesionales-grid">
+      <div class="profesional-card" *ngFor="let psi of psicologos" (click)="seleccionarPsicologo(psi)">
+        <div class="profesional-avatar">
+          <div class="avatar-placeholder">{{ psi.avatar }}</div>
+        </div>
+        <div class="profesional-info">
+          <h3>{{ psi.nombre }}</h3>
+          <p class="especialidad">{{ psi.especialidad }}</p>
+          <div class="rating-exp">
+            <span>{{ psi.rating }}</span> | <span>{{ psi.experiencia }}</span>
+          </div>
+          <div class="disponibilidad">
+            <span class="badge-disponible">✅ {{ psi.disponibilidad }}</span>
+          </div>
+        </div>
+        <div class="profesional-action">
+          <button class="btn-seleccionar">Agendar con este profesional</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

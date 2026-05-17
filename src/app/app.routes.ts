@@ -6,6 +6,9 @@ import { TestVocacionalComponent } from './ModuloTestV/test-vocacional/test-voca
 import { BuzonAnonimo } from './buzon-anonimo/buzon-anonimo';
 import { PerfilUsuario } from './RegistroModuloC/components/perfil-usuario/perfil-usuario';
 import { BlogPrincipal } from './ModuloRepositorioS/components/blog-principal/blog-principal';
+import { MisCitasComponent } from './ModuloCitasC/components/mis-citas/mis-citas';
+import { AgendarCitaComponent } from './ModuloCitasC/components/agendar-cita/agendar-cita';
+import { SeleccionarProfesionalComponent } from './ModuloCitasC/components/seleccionar-profesional/seleccionar-profesional';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,5 +19,8 @@ export const routes: Routes = [
   { path: 'test-vocacional', component: TestVocacionalComponent },
   { path: 'perfil-usuario', component: PerfilUsuario },
   { path: 'repositorio-bienestar', component: BlogPrincipal },
+  { path: 'mis-citas', component: MisCitasComponent },
+  { path: 'seleccionar-profesional', component: SeleccionarProfesionalComponent },
+  { path: 'agendar-cita', component: AgendarCitaComponent },
   { path: '**', redirectTo: '/login' },
 ];

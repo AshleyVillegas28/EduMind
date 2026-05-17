@@ -1,0 +1,108 @@
+<div class="agendar-page">
+  <div class="agendar-container">
+    <div class="agendar-header">
+      <h2>Agendar Cita</h2>
+      <button class="btn-volver" routerLink="/mis-citas">Volver a mis citas</button>
+    </div>
+
+    <div class="agendar-content">
+      <!-- Tarjeta de información del psicólogo -->
+      <div class="psicologo-card">
+        <div class="psicologo-avatar">
+          <!-- Placeholder avatar if no image -->
+          <div class="avatar-placeholder">{{ nuevaCita.psicologoNombre.charAt(0) }}</div>
+        </div>
+        <div class="psicologo-info">
+          <h2>{{ nuevaCita.psicologoNombre }}</h2>
+          <p class="especialidad">{{ nuevaCita.psicologoEspecialidad }}</p>
+          <div class="rating-exp">
+            <span>⭐ 4.8/5</span> | <span>💼 5 años exp.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario de Agendamiento -->
+      <div class="formulario-card">
+        <div class="card-header">
+          <h3>📅 Solicitar cita</h3>
+        </div>
+        
+        <div class="card-body">
+          <form (ngSubmit)="guardarCita()">
+            <div class="form-group">
+              <label>Modalidad</label>
+              <div class="modalidad-options">
+                <label class="modalidad-label" [class.active]="nuevaCita.modalidad === 'Virtual'">
+                  <input
+                    type="radio"
+                    name="modalidad"
+                    value="Virtual"
+                    [(ngModel)]="nuevaCita.modalidad"
+                  />
+                  <span class="icon">💻</span> Virtual
+                </label>
+                <label class="modalidad-label" [class.active]="nuevaCita.modalidad === 'Presencial'">
+                  <input
+                    type="radio"
+                    name="modalidad"
+                    value="Presencial"
+                    [(ngModel)]="nuevaCita.modalidad"
+                  />
+                  <span class="icon">🏢</span> Presencial
+                </label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group half-width">
+                <label>Fecha</label>
+                <input
+                  type="date"
+                  name="fecha"
+                  [(ngModel)]="nuevaCita.fecha"
+                  required
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group half-width">
+                <label>Horario</label>
+                <select
+                  name="hora"
+                  [(ngModel)]="nuevaCita.hora"
+                  required
+                  class="form-control"
+                >
+                  <option value="" disabled selected>Seleccione una hora</option>
+                  <option value="09:00 AM">09:00 AM</option>
+                  <option value="10:00 AM">10:00 AM</option>
+                  <option value="11:00 AM">11:00 AM</option>
+                  <option value="03:00 PM">03:00 PM</option>
+                  <option value="04:00 PM">04:00 PM</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Motivo de consulta</label>
+              <textarea
+                name="motivo"
+                [(ngModel)]="nuevaCita.motivo"
+                class="form-control"
+                rows="4"
+                placeholder="Describe brevemente el motivo..."
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-confirmar">
+                Confirmar cita
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
